@@ -355,8 +355,12 @@ impl<T: RelNodeTyp> CascadesOptimizer<T> {
         self.explored_expr.contains(&expr_id)
     }
 
-    pub(super) fn mark_expr_explored(&mut self, group_id: ExprId) {
-        self.explored_expr.insert(group_id);
+    pub(super) fn mark_expr_explored(&mut self, expr_id: ExprId) {
+        self.explored_expr.insert(expr_id);
+    }
+
+    pub(super) fn unmark_expr_explored(&mut self, expr_id: ExprId) {
+        self.explored_expr.remove(&expr_id);
     }
 
     pub(super) fn is_rule_fired(&self, group_expr_id: ExprId, rule_id: RuleId) -> bool {
